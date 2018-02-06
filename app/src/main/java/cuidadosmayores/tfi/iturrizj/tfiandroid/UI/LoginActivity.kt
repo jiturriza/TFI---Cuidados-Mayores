@@ -3,6 +3,8 @@ package cuidadosmayores.tfi.iturrizj.tfiandroid.UI
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.animation.CycleInterpolator
+import android.view.animation.TranslateAnimation
 import android.widget.Toast
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
@@ -21,7 +23,6 @@ import cuidadosmayores.tfi.iturrizj.tfiandroid.PreferencesHelper.BooleanElements
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Response
-
 
 val facebookCallback = CallbackManager.Factory.create()
 
@@ -78,27 +79,31 @@ class LoginActivity : AppCompatActivity() {
         }
 
         login_button.setOnClickListener { _ ->
-            /*            if (hacerValidaciones()) {
-                            //Autenticacion en Firebase
-                            mAuth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
-                                    .addOnCompleteListener(this) { task ->
-                                        if (task.isSuccessful) {
-                                            //User de Firebase
-                                            val user = mAuth.currentUser
-                                            if (user != null) {
-                                                //Autenticacion en servidor
-                                                ServiceGenerator.createService(CuidadosMayoresServices::class.java)
-                                                        ?.login(user?.uid)
-                                                        ?.enqueue(loginCallback)
+            if (hacerValidaciones()) {
+                //Autenticacion en Firebase
+                /*                mAuth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
+                                        .addOnCompleteListener(this) { task ->
+                                            if (task.isSuccessful) {
+                                                //User de Firebase
+                                                val user = mAuth.currentUser
+                                                if (user != null) {
+                                                    //Autenticacion en servidor
+                                                    ServiceGenerator.createService(CuidadosMayoresServices::class.java)
+                                                            ?.login(user?.uid)
+                                                            ?.enqueue(loginCallback)
+                                                }
+                                            } else {
+                                                Toast.makeText(applicationContext, "", Toast.LENGTH_SHORT).show()
                                             }
-                                        } else {
-                                            Toast.makeText(applicationContext, "", Toast.LENGTH_SHORT).show()
-                                        }
-                                    }
-                        }*/
-            startActivity(Intent(applicationContext, MainActivity::class.java))
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-            finish()
+                                        } */
+                startActivity(Intent(applicationContext, MainActivity::class.java))
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                finish()
+            } else {
+                val shake = TranslateAnimation(0f, 10f, 0f, 0f)
+                shake.duration = 300
+                shake.interpolator = CycleInterpolator(2f)
+            }
         }
     }
 
@@ -127,6 +132,9 @@ class LoginActivity : AppCompatActivity() {
                     override fun onComplete(task: Task<AuthResult>) {
                         if (task.isSuccessful()) {
                             val user = mAuth.currentUser
+                            startActivity(Intent(applicationContext, MainActivity::class.java))
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                            finish()
                         }
                     }
                 })

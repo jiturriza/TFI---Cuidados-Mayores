@@ -11,12 +11,18 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
+import android.widget.Toast
 import com.google.android.gms.maps.GoogleMap
+import com.google.firebase.auth.FirebaseAuth
 import cuidadosmayores.tfi.iturrizj.tfiandroid.MapsActivity
 import cuidadosmayores.tfi.iturrizj.tfiandroid.R
+import cuidadosmayores.tfi.iturrizj.tfiandroid.R.layout.nav_header_main
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -26,8 +32,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            Snackbar.make(view, "Desea alertar una emergencia?", Snackbar.LENGTH_LONG)
+                    .setActionTextColor(resources.getColor(R.color.colorAccent))
+                    .setAction("ALERTAR",
+                            { _ -> Toast.makeText(applicationContext, "Avisando a emergencias y a familiares agendados..", Toast.LENGTH_SHORT).show() }
+                    ).show()
         }
 
         val toggle = ActionBarDrawerToggle(
@@ -36,6 +45,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+        nav_view.getHeaderView(0).findViewById<TextView>(R.id.textView_username).text = FirebaseAuth.getInstance().currentUser?.displayName
         banana.setOnClickListener({ _ ->
             startActivity(Intent(this@MainActivity,
                     FormularioComidaActivity::class.java),
@@ -68,6 +78,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_logout -> cerrarSesion()
             R.id.nav_maps -> startActivity(Intent(this@MainActivity, MapsActivity::class.java))
+            R.id.nav_settings -> startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)

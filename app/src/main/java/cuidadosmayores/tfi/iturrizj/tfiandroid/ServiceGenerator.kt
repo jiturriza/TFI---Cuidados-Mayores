@@ -1,5 +1,6 @@
 package cuidadosmayores.tfi.iturrizj.tfiandroid
 
+import android.os.Build
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -11,8 +12,8 @@ import java.io.IOException
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-const val BASE_URL: String = "http://172.16.66.72:8080/"
 const val READ_TIMEOUT: Long = 40
+const val BASE_URL: String = BuildConfig.API_BASE_URL
 
 class ServiceGenerator {
 

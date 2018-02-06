@@ -21,7 +21,7 @@ import retrofit2.Call
 import retrofit2.Response
 
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.CancelableCallback {
+class MapsActivity : ActivityWithBackButton(), OnMapReadyCallback, GoogleMap.CancelableCallback {
 
     private lateinit var mMap: GoogleMap
     lateinit var bottomsheetBehavior: BottomSheetBehavior<ConstraintLayout>
@@ -47,7 +47,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.Cancelab
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         bottomsheetBehavior = BottomSheetBehavior.from(bottomm_sheet)
 
         val mapFragment = supportFragmentManager
@@ -71,13 +70,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.Cancelab
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(posicionActual, 17f))
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
-            android.R.id.home -> finish()
-        }
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        return super.onOptionsItemSelected(item)
-    }
+
 
     private fun initializeBottomSheet() {
         bottomsheetBehavior.isHideable = true
@@ -99,7 +92,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.Cancelab
     private fun selectedPeriod(index: Int) {
         selectedPosition = 0
         ubicaciones = trayectorias[index].ubicaciones
-        textview_distancia.text = trayectorias[index].distanciaTotal.toString()
+        textview_distancia.text = "Distancia recorrida : " + trayectorias[index].distanciaTotal.toString() + " metros"
 
         //Dibujo el polyline
         val rectOptions = PolylineOptions()
