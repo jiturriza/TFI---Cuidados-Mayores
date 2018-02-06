@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "491493556631",
+    "firebase_url": "https://fir-test-ed256.firebaseio.com",
+    "project_id": "fir-test-ed256",
+    "storage_bucket": "fir-test-ed256.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491493556631:android:9161137e043725a7",
+        "android_client_info": {
+          "package_name": "cuidadosmayores.tfi.iturrizj.tfiandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "491493556631-e0cmmkqv7r3n60civo9quuvd0kthd9qb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cuidadosmayores.tfi.iturrizj.tfiandroid",
+            "certificate_hash": "03fbdce41f1c47f9facd979448af6499768d63e0"
+          }
+        },
+        {
+          "client_id": "491493556631-cnbacbord2l63jbhmfhr9e2hb6gt1kr7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRUGfwdoHcL_oTz64Fq73EcYkN1O5H4Fw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "491493556631-cnbacbord2l63jbhmfhr9e2hb6gt1kr7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

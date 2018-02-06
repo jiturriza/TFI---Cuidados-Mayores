@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="cuidadosmayores.tfi.iturrizj.tfiandroid.UI.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_alimentacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/card_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/banana"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/imageview_top_round_background"
+                android:cropToPadding="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/banana"
+                android:transitionName="bananashared"
+                app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="false"
+                android:layout_centerInParent="false"
+                android:layout_centerVertical="false"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="serif"
+                android:lineSpacingExtra="14sp"
+                android:text="Alimentación"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textAppearance="@android:style/TextAppearance.Material.Widget.ActionMode.Title.Inverse"
+                android:textSize="24sp"
+                android:textStyle="italic"
+                android:typeface="serif"
+                app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+                app:layout_constraintEnd_toEndOf="@+id/banana"
+                app:layout_constraintStart_toStartOf="@+id/banana"
+                app:layout_constraintTop_toTopOf="@+id/banana" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/colorAccent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"></RelativeLayout>
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_actvidad_fisica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_alimentacion">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/card_ejercicio_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_actividad"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/imageview_top_round_background"
+                android:cropToPadding="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/banana"
+                android:transitionName="bananashared"
+                app:layout_constraintBottom_toTopOf="@+id/card_ejercicio_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="false"
+                android:layout_centerInParent="false"
+                android:layout_centerVertical="false"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="serif"
+                android:lineSpacingExtra="14sp"
+                android:text="Actividad Física"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textAppearance="@android:style/TextAppearance.Material.Widget.ActionMode.Title.Inverse"
+                android:textSize="24sp"
+                android:textStyle="italic"
+                android:typeface="serif"
+                app:layout_constraintBottom_toBottomOf="@+id/img_actividad"
+                app:layout_constraintEnd_toEndOf="@+id/img_actividad"
+                app:layout_constraintStart_toStartOf="@+id/img_actividad"
+                app:layout_constraintTop_toTopOf="@+id/img_actividad" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>
