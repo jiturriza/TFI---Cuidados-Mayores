@@ -1,8 +1,7 @@
-package cuidadosmayores.tfi.iturrizj.tfiandroid
+package cuidadosmayores.tfi.iturrizj.tfiandroid.BLL.Helpers
 
 import android.view.View
 import android.widget.EditText
-import android.widget.Spinner
 
 class ValidationHelper {
 

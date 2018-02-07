@@ -1,4 +1,4 @@
-package cuidadosmayores.tfi.iturrizj.tfiandroid
+package cuidadosmayores.tfi.iturrizj.tfiandroid.UI
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

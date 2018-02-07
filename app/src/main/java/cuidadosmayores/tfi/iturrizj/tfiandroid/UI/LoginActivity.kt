@@ -1,5 +1,6 @@
 package cuidadosmayores.tfi.iturrizj.tfiandroid.UI
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -19,12 +20,16 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import cuidadosmayores.tfi.iturrizj.tfiandroid.*
 import cuidadosmayores.tfi.iturrizj.tfiandroid.BLL.Callback
-import cuidadosmayores.tfi.iturrizj.tfiandroid.PreferencesHelper.BooleanElements
+import cuidadosmayores.tfi.iturrizj.tfiandroid.BLL.Helpers.PreferencesHelper
+import cuidadosmayores.tfi.iturrizj.tfiandroid.BLL.Helpers.PreferencesHelper.BooleanElements
+import cuidadosmayores.tfi.iturrizj.tfiandroid.BLL.Helpers.StringHelper
+import cuidadosmayores.tfi.iturrizj.tfiandroid.BLL.Helpers.ValidationHelper
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Response
 
 val facebookCallback = CallbackManager.Factory.create()
+const val REQUEST_REGISTER: Int = 333
 
 class LoginActivity : AppCompatActivity() {
 
@@ -34,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        if (PreferencesHelper.isEnabled(applicationContext, BooleanElements.SHOW_TUTORIAL)) showTutorial()
+        if (PreferencesHelper.isEnabled(applicationContext, BooleanElements.SHOW_LOGIN_TUTORIAL)) showTutorial()
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -74,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         register_button.setOnClickListener { _ ->
-            startActivity(Intent(this, RegisterActivity::class.java))
+            startActivityForResult(Intent(this, RegisterActivity::class.java), REQUEST_REGISTER)
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
 
@@ -115,11 +120,23 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showTutorial() {
-        PreferencesHelper.setEnabled(applicationContext, BooleanElements.SHOW_TUTORIAL, false)
+        PreferencesHelper.setEnabled(applicationContext, BooleanElements.SHOW_LOGIN_TUTORIAL, false)
         startActivity(Intent(applicationContext, TutorialLogin::class.java))
+        overridePendingTransition(R.anim.slide_down_in, R.anim.slide_down_out)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_REGISTER && resultCode == Activity.RESULT_OK) {
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    Toast.makeText(applicationContext, "Registracion exitosa!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                    finish()
+                }
+                Activity.RESULT_CANCELED -> Toast.makeText(applicationContext, "Registracion falló!", Toast.LENGTH_SHORT).show()
+            }
+        }
         facebookCallback.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
     }

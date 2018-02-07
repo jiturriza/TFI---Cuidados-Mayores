@@ -7,4 +7,8 @@
     <color name="login_tutorial1">#4ac2e4</color>
     <color name="login_tutorial2">#1de6a6</color>
     <color name="login_tutorial3">#16ac3e</color>
+    <color name="login_maps1">#eded3e</color>
+    <color name="login_maps2">#f7a73e</color>
+
+
 </resources>

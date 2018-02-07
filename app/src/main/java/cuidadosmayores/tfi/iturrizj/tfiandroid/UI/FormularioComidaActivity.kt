@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import cuidadosmayores.tfi.iturrizj.tfiandroid.R
 
-class FormularioComidaActivity : AppCompatActivity() {
+class FormularioComidaActivity : ActivityWithBackButton() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

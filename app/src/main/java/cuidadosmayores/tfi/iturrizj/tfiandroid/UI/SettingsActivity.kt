@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
 import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
 import cuidadosmayores.tfi.iturrizj.tfiandroid.*
+import cuidadosmayores.tfi.iturrizj.tfiandroid.BLL.Helpers.PreferencesHelper
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : ActivityWithBackButton(), onItemClick {
@@ -27,7 +27,8 @@ class SettingsActivity : ActivityWithBackButton(), onItemClick {
         //ver tutoriales
         when (position) {
             0 -> { //Tutoriales
-                PreferencesHelper.setEnabled(applicationContext, PreferencesHelper.BooleanElements.SHOW_TUTORIAL, false)
+                PreferencesHelper.setEnabled(applicationContext, PreferencesHelper.BooleanElements.SHOW_LOGIN_TUTORIAL, true)
+                PreferencesHelper.setEnabled(applicationContext, PreferencesHelper.BooleanElements.SHOW_MAPS_TUTORIAL, true)
                 Toast.makeText(applicationContext, "Tutoriales restaurados", Toast.LENGTH_SHORT).show()
             }
             1 -> (application as ApplicationCM).logOut() //Cerrar sesion

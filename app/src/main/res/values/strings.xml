@@ -34,4 +34,9 @@
     <string name="tutorial_login_title3">Atencion en caso de emergencia</string>
     <string name="tutorial_login_desc3">En caso de deteccion de una emergencia reciba una notificacion el instante mientras que la asistencia va en camino..</string>
 
+    <string name="tutorial_maps_title1">Consulte la ubicacion en tiempo real</string>
+    <string name="tutorial_maps_desc1">En cualquier momento puede ver donde se encuentra su familiar. Asegurese que se encuentre bien en cada momento.</string>
+    <string name="tutorial_maps_title2">Consulte la trayectoria que recorrio</string>
+    <string name="tutorial_maps_desc2">Lleve un registro de las cuadras recorridas en las ultimas 2, 12 y 24 horas.</string>
+
 </resources>

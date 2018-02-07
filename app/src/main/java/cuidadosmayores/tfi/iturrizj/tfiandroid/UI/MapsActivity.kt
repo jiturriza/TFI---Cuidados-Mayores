@@ -1,11 +1,10 @@
-package cuidadosmayores.tfi.iturrizj.tfiandroid
+package cuidadosmayores.tfi.iturrizj.tfiandroid.UI
 
+import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.BottomSheetBehavior
-import android.support.v7.app.AppCompatActivity
-import android.view.MenuItem
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -16,6 +15,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
 import cuidadosmayores.tfi.iturrizj.tfiandroid.BE.Trayectoria
 import cuidadosmayores.tfi.iturrizj.tfiandroid.BLL.Callback
+import cuidadosmayores.tfi.iturrizj.tfiandroid.BLL.Helpers.PreferencesHelper
+import cuidadosmayores.tfi.iturrizj.tfiandroid.R
 import kotlinx.android.synthetic.main.activity_maps.*
 import retrofit2.Call
 import retrofit2.Response
@@ -52,6 +53,8 @@ class MapsActivity : ActivityWithBackButton(), OnMapReadyCallback, GoogleMap.Can
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        if (PreferencesHelper.isEnabled(applicationContext, PreferencesHelper.BooleanElements.SHOW_MAPS_TUTORIAL)) showTutorial()
 
         initializeBottomSheet()
         getMockUbicaciones()
@@ -179,4 +182,11 @@ class MapsActivity : ActivityWithBackButton(), OnMapReadyCallback, GoogleMap.Can
         )
 
     }
+
+    private fun showTutorial (){
+        PreferencesHelper.setEnabled(applicationContext, PreferencesHelper.BooleanElements.SHOW_MAPS_TUTORIAL, false)
+        startActivity(Intent(applicationContext, TutorialMaps::class.java))
+        overridePendingTransition(R.anim.slide_down_in, R.anim.slide_down_out)
+    }
+
 }

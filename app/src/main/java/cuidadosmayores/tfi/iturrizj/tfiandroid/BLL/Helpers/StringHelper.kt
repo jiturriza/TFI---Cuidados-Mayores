@@ -1,4 +1,4 @@
-package cuidadosmayores.tfi.iturrizj.tfiandroid
+package cuidadosmayores.tfi.iturrizj.tfiandroid.BLL.Helpers
 
 import android.widget.EditText
 

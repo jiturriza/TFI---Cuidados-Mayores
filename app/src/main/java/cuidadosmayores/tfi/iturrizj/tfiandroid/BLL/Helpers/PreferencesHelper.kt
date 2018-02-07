@@ -1,4 +1,4 @@
-package cuidadosmayores.tfi.iturrizj.tfiandroid
+package cuidadosmayores.tfi.iturrizj.tfiandroid.BLL.Helpers
 
 import android.content.Context
 
@@ -7,7 +7,8 @@ const val PREFERENCES_NAME = "Storage"
 class PreferencesHelper {
 
     enum class BooleanElements {
-        SHOW_TUTORIAL
+        SHOW_LOGIN_TUTORIAL,
+        SHOW_MAPS_TUTORIAL
     }
 
     companion object {

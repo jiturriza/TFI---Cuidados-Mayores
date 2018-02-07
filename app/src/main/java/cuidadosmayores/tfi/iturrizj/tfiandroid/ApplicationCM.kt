@@ -4,6 +4,7 @@ import android.app.Application
 import com.facebook.FacebookSdk
 import com.google.firebase.auth.FirebaseAuth
 import android.content.Intent
+import com.facebook.login.LoginManager
 import cuidadosmayores.tfi.iturrizj.tfiandroid.UI.LoginActivity
 
 
@@ -16,7 +17,8 @@ class ApplicationCM : Application() {
     }
 
     fun logOut(){
-        FirebaseAuth.getInstance().signOut()
+        FirebaseAuth.getInstance().signOut() //Logout de Firebase
+        LoginManager.getInstance().logOut() //Logout de Facebook
         var intent = Intent(applicationContext, LoginActivity::class.java)
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)

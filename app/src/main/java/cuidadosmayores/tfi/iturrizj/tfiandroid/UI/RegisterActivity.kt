@@ -1,15 +1,9 @@
 package cuidadosmayores.tfi.iturrizj.tfiandroid.UI
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import android.widget.Toast
-import com.facebook.*
-import com.facebook.login.LoginResult
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import cuidadosmayores.tfi.iturrizj.tfiandroid.BE.Idioma
 import cuidadosmayores.tfi.iturrizj.tfiandroid.BE.Usuario
@@ -24,11 +18,10 @@ import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
 
-    lateinit var mAuth: FirebaseAuth
+    var mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FacebookSdk.setApplicationId("572767276391517")
         setContentView(R.layout.activity_register)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -61,10 +54,10 @@ class RegisterActivity : AppCompatActivity() {
     private fun registrar() {
         var usuario = Usuario()
         usuario.Email = email.text.toString()
-        usuario.Idioma = (spinner_idiomas.selectedItem as Idioma)
+//        usuario.Idioma = (spinner_idiomas.selectedItem as Idioma)
         usuario.Password = clave.text.toString()
 
-        ServiceGenerator.createService(CuidadosMayoresServices::class.java)
+        /*ServiceGenerator.createService(CuidadosMayoresServices::class.java)
                 ?.register(usuario)
                 ?.enqueue(object : Callback<Any>() {
                     override fun onSuccess() {
@@ -77,41 +70,20 @@ class RegisterActivity : AppCompatActivity() {
                         super.onFailure(call, t)
                         Toast.makeText(this@RegisterActivity, "Registracion falló", Toast.LENGTH_SHORT).show()
                     }
-                })
+                })*/
 
-    }
-
-/*
-    private fun registarFacebook() {
-        var mCallbackManager: CallbackManager = CallbackManager.Factory.create()
-        facebook_singin_button.registerCallback(mCallbackManager, object : FacebookCallback<LoginResult> {
-            override fun onSuccess(loginResult: LoginResult?) {
-                if (loginResult != null) handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            override fun onError(error: FacebookException?) {
-            }
-
-            override fun onCancel() {
-            }
-        }
-        )
-    }
-*/
-
-    private fun handleFacebookAccessToken(token: AccessToken) {
-
-        val credential = FacebookAuthProvider.getCredential(token.token)
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this@RegisterActivity, object : OnCompleteListener<AuthResult> {
-                    override fun onComplete(task: Task<AuthResult>) {
-                        if (task.isSuccessful()) {
-                            val user = mAuth.getCurrentUser()
-                        } else {
-                        }
+        mAuth.createUserWithEmailAndPassword(email.text.toString(), clave.text.toString())
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        val user = mAuth.currentUser
+                        setResult(Activity.RESULT_OK)
+                        finish()
+                    } else {
 
                     }
-                })
+
+                }
+
     }
 
 }

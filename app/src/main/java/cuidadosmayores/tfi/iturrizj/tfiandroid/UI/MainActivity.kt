@@ -13,16 +13,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
-import com.google.android.gms.maps.GoogleMap
 import com.google.firebase.auth.FirebaseAuth
-import cuidadosmayores.tfi.iturrizj.tfiandroid.MapsActivity
 import cuidadosmayores.tfi.iturrizj.tfiandroid.R
-import cuidadosmayores.tfi.iturrizj.tfiandroid.R.layout.nav_header_main
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_maps.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
