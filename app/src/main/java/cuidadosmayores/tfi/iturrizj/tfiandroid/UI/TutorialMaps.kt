@@ -34,7 +34,10 @@ class TutorialMaps : AppIntro2() {
         AlertDialog.Builder(this@TutorialMaps).
                 setTitle(R.string.tutorial_skip).setTitle("Omitir Tutorial")
                 .setMessage(R.string.tutorial_skip)
-                .setPositiveButton("Aceptar", { _, _ -> finish() })
+                .setPositiveButton("Aceptar", { _, _ ->
+                    finish()
+                    overridePendingTransition(R.anim.slide_up_in, R.anim.slide_up_out)
+                })
                 .setNegativeButton("Cancelar", { _, _ -> })
                 .show()
     }

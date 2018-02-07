@@ -14,6 +14,7 @@ import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import cuidadosmayores.tfi.iturrizj.tfiandroid.ApplicationCM
 import cuidadosmayores.tfi.iturrizj.tfiandroid.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -71,7 +72,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_logout -> cerrarSesion()
+            R.id.nav_logout -> (application as ApplicationCM).logOut()
             R.id.nav_maps -> startActivity(Intent(this@MainActivity, MapsActivity::class.java))
             R.id.nav_settings -> startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
         }
