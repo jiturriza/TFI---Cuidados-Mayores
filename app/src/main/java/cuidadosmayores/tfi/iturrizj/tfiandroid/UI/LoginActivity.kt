@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import android.view.animation.CycleInterpolator
 import android.view.animation.TranslateAnimation
 import android.widget.Toast
@@ -85,25 +86,27 @@ class LoginActivity : AppCompatActivity() {
 
         login_button.setOnClickListener { _ ->
             if (hacerValidaciones()) {
+                login_progress.visibility = View.VISIBLE
                 //Autenticacion en Firebase
-                /*                mAuth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
-                                        .addOnCompleteListener(this) { task ->
-                                            if (task.isSuccessful) {
-                                                //User de Firebase
-                                                val user = mAuth.currentUser
-                                                if (user != null) {
-                                                    //Autenticacion en servidor
-                                                    ServiceGenerator.createService(CuidadosMayoresServices::class.java)
-                                                            ?.login(user?.uid)
-                                                            ?.enqueue(loginCallback)
-                                                }
-                                            } else {
-                                                Toast.makeText(applicationContext, "", Toast.LENGTH_SHORT).show()
-                                            }
-                                        } */
-                startActivity(Intent(applicationContext, MainActivity::class.java))
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-                finish()
+                mAuth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
+                        .addOnCompleteListener(this) { task ->
+                            login_progress.visibility = View.GONE
+                            if (task.isSuccessful) {
+                                //User de Firebase
+                                val user = mAuth.currentUser
+                                if (user != null) {
+                                    //Autenticacion en servidor
+                                    /*ServiceGenerator.createService(CuidadosMayoresServices::class.java)
+                                            ?.login(user?.uid)
+                                            ?.enqueue(loginCallback)*/
+                                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                                    finish()
+                                }
+                            } else {
+                                Toast.makeText(applicationContext, task.exception.toString(), Toast.LENGTH_LONG).show()
+                            }
+                        }
             } else {
                 val shake = TranslateAnimation(0f, 10f, 0f, 0f)
                 shake.duration = 300

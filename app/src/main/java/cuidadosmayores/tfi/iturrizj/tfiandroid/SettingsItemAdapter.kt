@@ -35,7 +35,7 @@ class SettingsItemAdapter(context: Context, items: List<SettingsItem>, listener:
     }
 
 
-    public inner class SettingsItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class SettingsItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         internal var titleTextview: TextView
         internal var descTextview: TextView
         internal var imageView: ImageView

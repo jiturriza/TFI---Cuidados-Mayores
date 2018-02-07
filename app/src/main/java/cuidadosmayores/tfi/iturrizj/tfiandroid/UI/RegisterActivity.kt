@@ -1,6 +1,7 @@
 package cuidadosmayores.tfi.iturrizj.tfiandroid.UI
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
@@ -14,6 +15,11 @@ import cuidadosmayores.tfi.iturrizj.tfiandroid.ServiceGenerator
 import kotlinx.android.synthetic.main.activity_register.*
 import retrofit2.Call
 import retrofit2.Response
+import android.content.Intent
+import android.widget.EditText
+import android.widget.TextView
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.auth.FirebaseUser
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -77,13 +83,34 @@ class RegisterActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         val user = mAuth.currentUser
                         setResult(Activity.RESULT_OK)
-                        finish()
                     } else {
-
+                        setResult(Activity.RESULT_CANCELED)
                     }
-
                 }
 
+        mAuth.addAuthStateListener { firebaseAuth ->
+            val user = firebaseAuth.currentUser
+            if (user != null) {
+                showUsernameDialog(user)
+            }
+        }
+    }
+
+    fun showUsernameDialog(user: FirebaseUser) {
+        var textview_user = EditText(this@RegisterActivity)
+        AlertDialog.Builder(this@RegisterActivity)
+                .setTitle("Establecer Nombre de usuario")
+                .setView(textview_user)
+                .setPositiveButton("Aceptar", { _, _ -> updateProfile(user, textview_user.text.toString()) })
+                .setNegativeButton("Cancelar", { _, _ -> updateProfile(user, email.text.toString()) })
+                .create()
+                .show()
+    }
+
+    fun updateProfile(user: FirebaseUser, name: String) {
+        val profileUpdates = UserProfileChangeRequest.Builder()
+                .setDisplayName(name).build()
+        user.updateProfile(profileUpdates).addOnCompleteListener { _ -> finish() }
     }
 
 }
