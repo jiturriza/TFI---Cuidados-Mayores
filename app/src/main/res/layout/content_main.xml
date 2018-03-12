@@ -29,11 +29,11 @@
             <ImageView
                 android:id="@+id/banana"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="80dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/imageview_top_round_background"
                 android:cropToPadding="true"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@drawable/banana"
                 android:transitionName="bananashared"
                 app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
@@ -49,6 +49,7 @@
                 android:layout_centerInParent="false"
                 android:layout_centerVertical="false"
                 android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="serif"
@@ -69,7 +70,6 @@
                 android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="@color/colorAccent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"></RelativeLayout>
@@ -96,19 +96,19 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/card_ejercicio_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/img_actividad"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="120dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/imageview_top_round_background"
                 android:cropToPadding="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/banana"
+                android:src="@drawable/actividad_fisica"
                 android:transitionName="bananashared"
-                app:layout_constraintBottom_toTopOf="@+id/card_ejercicio_content"
+                app:layout_constraintBottom_toTopOf="@id/actividad_fisica_body"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -138,6 +138,16 @@
                 app:layout_constraintEnd_toEndOf="@+id/img_actividad"
                 app:layout_constraintStart_toStartOf="@+id/img_actividad"
                 app:layout_constraintTop_toTopOf="@+id/img_actividad" />
+
+
+            <RelativeLayout
+                android:id="@+id/actividad_fisica_body"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_actividad"></RelativeLayout>
 
         </android.support.constraint.ConstraintLayout>
 

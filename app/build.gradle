@@ -7,6 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 27
     defaultConfig {
+        multiDexEnabled true
         applicationId "cuidadosmayores.tfi.iturrizj.tfiandroid"
         minSdkVersion 17
         targetSdkVersion 27
@@ -47,10 +48,13 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:27.0.2'
     compile 'com.squareup.okhttp3:okhttp:3.3.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     compile 'com.github.apl-devs:appintro:v4.2.2'
     implementation 'com.facebook.android:facebook-login:[4,5)'
+    compile 'com.google.android.gms:play-services-fitness:11.8.0'
+    compile 'com.google.android.gms:play-services-auth:11.8.0'
 }
+
+
 
 
 
