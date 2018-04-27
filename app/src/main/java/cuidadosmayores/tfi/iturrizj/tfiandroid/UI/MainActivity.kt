@@ -54,7 +54,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            AlertDialog.Builder(this)
+                    .setTitle("Cerrar sesión")
+                    .setMessage("Esta seguro que desea terminar la sesion?")
+                    .setPositiveButton("Aceptar", { _, _ -> (application as ApplicationCM).logOut() })
+                    .setNegativeButton("Cancelar", null)
+                    .create().
+                    show()
         }
     }
 
@@ -68,6 +74,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.action_settings -> return true
             else -> return super.onOptionsItemSelected(item)
         }
+        return true
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -81,13 +88,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    private fun cerrarSesion() {
-        AlertDialog.Builder(this)
-                .setTitle("Cerrar sesión")
-                .setMessage("Esta seguro que desea terminar la sesion?")
-                .setPositiveButton("Aceptar", { _, _ -> startActivity(Intent(this@MainActivity, LoginActivity::class.java)) })
-                .setNegativeButton("Cancelar", null)
-                .create()
-                .show()
-    }
 }

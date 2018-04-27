@@ -39,4 +39,7 @@
     <string name="tutorial_maps_title2">Consulte la trayectoria que recorrio</string>
     <string name="tutorial_maps_desc2">Lleve un registro de las cuadras recorridas en las ultimas 2, 12 y 24 horas.</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

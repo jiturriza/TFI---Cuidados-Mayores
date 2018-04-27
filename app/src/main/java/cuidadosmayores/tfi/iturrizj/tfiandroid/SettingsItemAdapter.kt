@@ -15,7 +15,8 @@ class SettingsItemAdapter(context: Context, items: List<SettingsItem>, listener:
     val context = context
     val listener = listener
 
-    override fun onBindViewHolder(holder: SettingsItemViewHolder?, position: Int) {
+
+    override fun onBindViewHolder(holder: SettingsItemViewHolder, position: Int) {
         val item: SettingsItem = items[position]
         if (holder != null) {
             holder.descTextview.text = item.descripcion
@@ -30,7 +31,8 @@ class SettingsItemAdapter(context: Context, items: List<SettingsItem>, listener:
         return items.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): SettingsItemViewHolder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SettingsItemViewHolder {
         return SettingsItemViewHolder(LayoutInflater.from(context).inflate(R.layout.settings_item, parent, false))
     }
 
